@@ -72,7 +72,7 @@ augroup END
 
 " SECTION: clangd
 if executable("clangd") == 0
-  let s:clangdpath = expand("~") . "/.clangd/bin"
+  let s:clangdpath = expand("~/.clangd/bin")
   let $PATH .= ":" . s:clangdpath
 endif
 if executable('clangd')
