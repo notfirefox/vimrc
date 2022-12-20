@@ -54,10 +54,10 @@ let g:AutoPairsMapBS = 1
 let g:lsp_semantic_enabled = 1
 let g:lsp_semantic_delay = 100
 let lsp_diagnostics_signs_enabled = 0
-let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_highlights_enabled = 0
 let g:lsp_diagnostics_virtual_text_delay = 200
 let g:lsp_diagnostics_virtual_text_prefix = ""
+let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_signature_help_enabled = 0
 let g:lsp_document_highlight_enabled = 0
 let g:lsp_completion_documentation_enabled = 0
@@ -71,6 +71,10 @@ augroup lsp_install
 augroup END
 
 " SECTION: clangd
+if executable("clangd") == 0
+  let s:clangdpath = expand("~") . "/.clangd/bin"
+  let $PATH .= ":" . s:clangdpath
+endif
 if executable('clangd')
   au User lsp_setup call lsp#register_server({
     \ 'name': 'clangd',
