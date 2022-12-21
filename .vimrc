@@ -2,6 +2,9 @@
 syntax on
 filetype plugin indent on
 
+" SECTION: background
+set background=dark
+
 " SECTION: numbering
 set number relativenumber 
 
@@ -65,7 +68,7 @@ function! s:on_lsp_buffer_enabled() abort
   let g:lsp_format_sync_timeout = 1000
   autocmd! BufWritePre *.c,*.cpp,*.h call execute('LspDocumentFormatSync')
 endfunction
-augroup lsp_install
+  augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
