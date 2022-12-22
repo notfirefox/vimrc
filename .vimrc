@@ -92,7 +92,7 @@ if executable('clangd')
     \ })
 endif
 
-" SECTION: texlab
+" SECTION: latex
 if executable('texlab')
   autocmd User lsp_setup call lsp#register_server({
       \'name': 'texlab',
@@ -100,10 +100,12 @@ if executable('texlab')
       \'whitelist': ['tex']
     \})
 endif
-
-" SECTION: pdflatex
 if executable('pdflatex')
   autocmd BufWritePost *.tex term ++close ++hidden pdflatex %
+endif
+if executable('zathura')
+  autocmd BufReadPost *.tex term ++close ++hidden zathura %:r.pdf
+  autocmd QuitPre *.tex :bd! 2
 endif
 
 " SECTION: asyncomplete
