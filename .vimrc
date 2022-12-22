@@ -92,6 +92,15 @@ if executable('clangd')
     \ })
 endif
 
+" SECTION: texlab
+if executable(expand('texlab'))
+  autocmd User lsp_setup call lsp#register_server({
+      \'name': 'texlab',
+      \'cmd': {server_info->[expand('texlab')]},
+      \'whitelist': ['tex']
+    \})
+endif
+
 " SECTION: asyncomplete
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,preview
