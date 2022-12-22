@@ -18,6 +18,12 @@ set nowrap
 set incsearch 
 set nohlsearch
 
+" SECTION: hard mode
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
 " SECTION: color column
 set colorcolumn=90
 highlight colorcolumn ctermbg=8
