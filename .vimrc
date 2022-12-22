@@ -72,7 +72,7 @@ let g:lsp_document_highlight_enabled = 0
 let g:lsp_completion_documentation_enabled = 0
 function! s:on_lsp_buffer_enabled() abort
   let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre *.c,*.cpp,*.h,*tex call execute('LspDocumentFormatSync')
+  autocmd! BufWritePre *.c,*.cpp,*.h,*.tex call execute('LspDocumentFormatSync')
 endfunction
   augroup lsp_install
   au!
