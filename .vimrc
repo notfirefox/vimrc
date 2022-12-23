@@ -23,10 +23,6 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
 
 " SECTION: color column
 set colorcolumn=90
@@ -54,7 +50,6 @@ call plug#begin()
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
-  Plug 'github/copilot.vim'
 call plug#end()
 
 " SECTION: gruvbox
@@ -77,7 +72,7 @@ let g:lsp_document_highlight_enabled = 0
 let g:lsp_completion_documentation_enabled = 0
 function! s:on_lsp_buffer_enabled() abort
   let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre *.c,*.cpp,*.h,*.tex call execute('LspDocumentFormatSync')
+  autocmd! BufWritePre *.c,*.cpp,*.h call execute('LspDocumentFormatSync')
 endfunction
   augroup lsp_install
   au!
@@ -97,22 +92,6 @@ if executable('clangd')
     \ })
 endif
 
-" SECTION: latex
-if executable('texlab')
-  autocmd User lsp_setup call lsp#register_server({
-      \'name': 'texlab',
-      \'cmd': {server_info->[expand('texlab')]},
-      \'whitelist': ['tex']
-    \})
-endif
-if executable('pdflatex')
-  autocmd BufWritePost *.tex term ++close ++hidden pdflatex %
-endif
-if executable('zathura')
-  autocmd BufReadPost *.tex term ++close ++hidden zathura %:r.pdf
-  autocmd QuitPre *.tex :bd! 2
-endif
-
 " SECTION: asyncomplete
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,preview
@@ -125,7 +104,3 @@ imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-
-" SECTION: copilot
-imap <silent> <script> <expr> <right> copilot#Accept("\<cr>")
-let g:copilot_no_tab_map = v:true
