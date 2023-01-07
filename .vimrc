@@ -92,36 +92,21 @@ if executable('clangd')
     \ })
 endif
 
+" SECTION: tab mapping
+function! Tab(shift)
+  if pumvisible() 
+    return a:shift ? "\<c-p>" : "\<c-n>"
+  elseif !a:shift
+    return vsnip#jumpable(1) ? "\<plug>(vsnip-jump-next)" : "\<tab>"
+  endif
+  return vsnip#jumpable(-1) ? "\<plug>(vsnip-jump-prev)" : "\<s-tab>"
+endfunction
+
 " SECTION: asyncomplete
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,preview
-
-" SECTION: mapping functions
-function! MapNext()
-  if pumvisible()
-    return "\<c-n>"
-  elseif vsnip#jumpable(1)
-    return "\<plug>(vsnip-jump-next)"
-  else
-    return "\<tab>"
-  endif
-endfunction
-function! MapPrev()
-  if pumvisible()
-    return "\<c-p>"
-  elseif vsnip#jumpable(-1)
-    return "\<plug>(vsnip-jump-prev)" 
-  else
-    return "\<s-tab>"
-  endif
-endfunction
-function! MapEnter()
-  return pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-endfunction
-
-" SECTION: completion mappings
-inoremap <expr> <tab> MapNext()
-inoremap <expr> <s-tab> MapPrev()
-smap <expr> <tab> MapNext()
-smap <expr> <s-tab> MapPrev()
-inoremap <expr> <cr> MapEnter()
+inoremap <expr> <tab> Tab(0)
+inoremap <expr> <s-tab> Tab(1)
+smap <expr> <tab> Tab(0)
+smap <expr> <tab> Tab(1)
+inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>" 
