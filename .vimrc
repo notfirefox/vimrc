@@ -31,7 +31,7 @@ set ttyfast ttimeout ttimeoutlen=1
 
 " SECTION: vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent execute '!curl -fLo ~/vim/autoload/plug.vim --create-dirs ' ..
+  silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs ' ..
     \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -103,4 +103,4 @@ inoremap <expr> <tab> Tab(0)
 inoremap <expr> <s-tab> Tab(1)
 smap <expr> <tab> Tab(0)
 smap <expr> <tab> Tab(1)
-inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>" 
+inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
