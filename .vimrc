@@ -19,10 +19,10 @@ set incsearch
 set nohlsearch
 
 " SECTION: hard mode
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 " SECTION: color column
 set colorcolumn=90
