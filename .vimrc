@@ -80,9 +80,8 @@ endfunction
 augroup END
 
 " SECTION: clangd
-if executable("clangd") == 0
-  let s:clangdpath = expand("~/.clangd/bin")
-  let $PATH .= ":" . s:clangdpath
+if !executable('clangd')
+  let $PATH .= ':' . expand('~/.clangd/bin')
 endif
 if executable('clangd')
   au User lsp_setup call lsp#register_server({
