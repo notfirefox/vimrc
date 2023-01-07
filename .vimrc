@@ -62,7 +62,7 @@ let g:AutoPairsMapBS = 1
 " SECTION: vim-lsp
 let g:lsp_semantic_enabled = 1
 let g:lsp_semantic_delay = 100
-let lsp_diagnostics_signs_enabled = 0
+let g:lsp_diagnostics_signs_enabled = 0
 let g:lsp_diagnostics_highlights_enabled = 0
 let g:lsp_diagnostics_virtual_text_delay = 100
 let g:lsp_diagnostics_virtual_text_prefix = ""
