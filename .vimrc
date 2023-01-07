@@ -2,9 +2,6 @@
 syntax on
 filetype plugin indent on
 
-" SECTION: background
-set background=dark
-
 " SECTION: numbering
 set number relativenumber 
 
