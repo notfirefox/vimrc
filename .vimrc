@@ -64,9 +64,9 @@ let g:lsp_semantic_enabled = 1
 let g:lsp_semantic_delay = 100
 let g:lsp_diagnostics_signs_enabled = 0
 let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_virtual_text_delay = 100
 let g:lsp_diagnostics_virtual_text_prefix = ""
-let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_signature_help_enabled = 0
 let g:lsp_document_highlight_enabled = 0
 let g:lsp_completion_documentation_enabled = 0
@@ -74,7 +74,7 @@ function! s:on_lsp_buffer_enabled() abort
   let g:lsp_format_sync_timeout = 1000
   autocmd! BufWritePre *.c,*.cpp,*.h call execute('LspDocumentFormatSync')
 endfunction
-  augroup lsp_install
+augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
