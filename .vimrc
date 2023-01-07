@@ -95,12 +95,33 @@ endif
 " SECTION: asyncomplete
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,preview
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
-" SECTION: vsnip
-imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+" SECTION: mapping functions
+function! MapNext()
+  if pumvisible()
+    return "\<c-n>"
+  elseif vsnip#jumpable(1)
+    return "\<plug>(vsnip-jump-next)"
+  else
+    return "\<tab>"
+  endif
+endfunction
+function! MapPrev()
+  if pumvisible()
+    return "\<c-p>"
+  elseif vsnip#jumpable(-1)
+    return "\<plug>(vsnip-jump-prev)" 
+  else
+    return "\<s-tab>"
+  endif
+endfunction
+function! MapEnter()
+  return pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+endfunction
+
+" SECTION: completion mappings
+inoremap <expr> <tab> MapNext()
+inoremap <expr> <s-tab> MapPrev()
+smap <expr> <tab> MapNext()
+smap <expr> <s-tab> MapPrev()
+inoremap <expr> <cr> MapEnter()
