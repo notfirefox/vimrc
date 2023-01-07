@@ -26,7 +26,6 @@ noremap <right> <nop>
 
 " SECTION: color column
 set colorcolumn=90
-highlight colorcolumn ctermbg=8
 
 " SECTION: cursor shape
 let &t_SI = "\e[6 q"
