@@ -51,7 +51,6 @@ call plug#end()
 colorscheme gruvbox8
 
 " SECTION: auto-pairs
-let g:AutoPairsCompatibleMaps = 0
 let g:AutoPairsMapBS = 1
 
 " SECTION: vim-lsp
