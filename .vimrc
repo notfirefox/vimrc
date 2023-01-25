@@ -45,7 +45,6 @@ call plug#begin()
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
-  Plug 'github/copilot.vim'
 call plug#end()
 
 " SECTION: gruvbox
@@ -85,12 +84,6 @@ if executable('clangd')
     \ 'cmd': {server_info->['clangd', '-background-index']},
     \ 'whitelist': ['c', 'cpp', 'h'],
     \ })
-endif
-
-" SECTION: node
-if executable('node') == 0
-  let nodepath = expand('~/.node/bin')
-  let $PATH .= ':' . nodepath
 endif
 
 " SECTION: tab mapping
