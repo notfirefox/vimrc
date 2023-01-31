@@ -24,11 +24,6 @@ noremap <right> <nop>
 " SECTION: color column
 set colorcolumn=90
 
-" SECTION: cursor shape
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-set ttyfast ttimeout ttimeoutlen=1
-
 " SECTION: vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs ' ..
